@@ -1,3 +1,5 @@
+> Habit Tracker application developed to be accessed via Web and Mobile. Learning course provided by [Rocketseat](https://app.rocketseat.com.br/).
+
 ## Setup
 - `npm init -y`, creates the package.json
 - `npm i fastify`

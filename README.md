@@ -1,98 +1,76 @@
-### Interesting
-- O Javascript utiliza a V8 Engine do Chrome para  rodar no frontend. O Nodescript utiliza essa V8 externamente
-- Typescript é um superset do Javascript. Ajuda a evitar erros de tipagem
+## Setup
+- `npm init -y`, creates the package.json
+- `npm i fastify`
+- `npx tsc --init`, creates a TypeScript configuration file
+  -  change "target": "es2016" to "es2020"
+- `npm i tsx -D`, allows running a Node.js file in TypeScript without converting the file
+- `npx tsx <file>`, to run the file once
+- `npx tsx watch <file>`, watches the file
 
-### Begin
-- npm init -y = criação do package.json
-- npm i fastify
-- npx tsc --init = cria arquivo de configuração typescript
-	- mudar "target": "es2016", para es2020    
-	
-- npm i tsx -D = permite executar um arquivo do node em ts, sem coversão do arqvuio
-	- npx tsx <file> = para rodar o arquivo uma única vez
-	- npx tsx watch <file> = fica observando o arquivo
+## Database
+We can use a native driver, like mysql2 in Node.js, which allows writing queries directly.
 
-- fastify é um framework de backend que está recebendo um suporte bom e é mais performático que express
+Another option is Knex, which converts JavaScript code to SQL.
 
-#### Banco de Dados
-podemos usar um driver nativo. no node é mysql2. que permite escrita de queries diretamente.
+Alternatively, an ORM (a layer in between) allows database modifications. The most popular one is Prisma, especially when using TypeScript.
+- `npm i -D prisma`
+- `npx prisma init --datasource-provider SQLite`, use a local SQLite file
+- `npx prisma migrate dev`
+- `npx prisma studio`, opens a DB explorer
+- `npx prisma generate`
 
-outra opção é o knex, que converte o código escrito em javascript para SQL
-
-outra opção é o ORM (um intermédio), que permite modificações de banco. o mais famoso é o Prisma. ainda mais se é utilizado o typescript
-	- npm i -D prisma
-	- 
-	- npx prisma init --datasource-provider SQLite = usar um arquivo local SQLite
-	- npx prisma migrate dev
-	- npx prisma studio = abrir DB explorer
-	- npx prisma generate
-
-Seed: código para popular o banco para testes
-
-#### Configuração do CORS
- - Define quais aplicações podem acessar o backend
- - npm i @fastify/cors
-
-
+#### CORS Configuration
+- Defines which applications can access the backend.
+- `npm i @fastify/cors`
 
 ## Frontend
 
-React: criamos componentes para reutilizar ou isolar 
-
 ### Vitejs
- - Um template que traz pronto coisas que toda aplicação Frontend utiliza, como o esbuild. traz suporte ao typescrit,
-
+ - A template that sets up common needs for frontend applications, such as esbuild.
+ 
 ### Radix
-Components de UI acessíveis, usando regras da aria-label (?)
-O Radix controla automaticamente os estados dos componentes
-Não possuem estilização própria
-
-### Requisições HTTP
-Usa-se a lib axios
+Accessible UI components using ARIA label rules. Radix automatically handles component states but does not include built-in styling.
 
 ### CLSX
-Permite condicionais em tailwindcss
+Allows conditional Tailwind CSS classes.
 
 ## React Native
-- Compila JS em android/IOS
-- O 'flexbox' já é ativo por padrão
+- Compiles JavaScript into Android/iOS.
+- flexbox is enabled by default.
 - adb devices
 
-## Nativewind
-- Na versão web é utilizado o tailwind, com essa outra lib é possível utilizar as mesmas classes
-- npx tailwindcss init
+### Nativewind
+- Similar to Tailwind for web, this library allows using the same classes.
+- `npx tailwindcss init` 
 
 ### Expo
-- Automatiza a conversão do bundle para android e iOS. 
-- Cada componente do celular é disponibilizado pelo expo. Em seu gitHub mostra o código equivalente para 
-android e iOS
+- Automates bundling for Android and iOS.
+- Makes each mobile component available, with GitHub examples for equivalent Android and iOS code.
+- `npx create-expo-app mobile --template`
+- `npx expo start`
 
-- npx create-expo-app mobile --template
-- npx expo start
+### Rendering with SVGs
+- `npx expo install react-native-svg`
 
-### Renderizar com SVGs
-npx expo install react-native-svg
-
-### Usar SVGs como componente
-lib transformer
-
-
-### npm install @react-navigation/native - React Navigation
+### React Navigation
 - Existem várias estratégias de navegação
 npx expo install:
-react-native-screens
-react-native-safe-area-context
+- react-native-screens
+- react-native-safe-area-context
 
 npm install
 @react-navigation/native-stack
 
-# Notifications Web
+### Web Notifications
 
-- Somente dentro do frontend existe funções nativas "windows"
-- Google possui a API notification trigger, porém não funciona quando o app está fechado
-- Para resolver isso, usa-se "service workers", que são scripts que rodam no navegador, enquanto aberto
+- Native "window" functions exist only within the frontend.
+- Google's notification trigger API doesn't work when the app is closed.
+- To address this, "service workers" run scripts while the browser is open.
+- Experimental API: Mozilla's PushManager.
 
-- API experimental: PushManager da Mozilla
+### Mobile Notifications
+- `npx expo install expo-notifications`
 
-# Notifications Mobile
-npx expo install expo-notifications
+## Others
+- JavaScript uses the Chrome V8 Engine to run on the front end, while Node.js utilizes this V8 engine externally.
+- Fastify is a backend framework gaining strong support and is more performant than Express
